@@ -11,11 +11,11 @@ Sorting options have also been provided based on text and time.
 Then, this data can be exported into a .csv file with a name and location specified by the user. However, few special characters can't be encoded and hence those tweets are omitted.
 
 
-# Mongo DB
+## Mongo DB
 
 Mongo DB has to be downloaded and installed for this code to run. You would have to start the mongod server and keep it running behind. 
 
-# Django
+## Django
 
 This code was written using Django.Tweepy and pymongo were additionally used.
 Download and install necessary files.
