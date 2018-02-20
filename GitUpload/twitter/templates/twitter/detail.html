@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'twitter/styles.css' %}" />
+
+
+
+    <h1>Here are the tweets you asked for...</h1>
+    {% csrf_token %}
+
+    <table style="width:100%">
+        <tr>
+         <th><h1>User</h1></th><th><h1>Text</h1></th><th><h1>Time</h1></th>
+        </tr>
+        {% for tweet in tweets %}
+        <tr>
+            <td>{{tweet.user.name}}</td>
+            <td> {{ tweet.text }} </td>
+            <td>{{tweet.created_at}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p/>
+
+
+
+    <b>
+    {% if tweets.has_previous %}
+        <a href="?page=1">Go to First Page</a>&emsp;
+        <a href="?page={{ tweets.previous_page_number }}">&laquo; &laquo;</a>&ensp;
+    {% endif %}
+    Page {{ tweets.number }} of {{ tweets.paginator.num_pages }}
+    {% if tweets.has_next %}
+         &ensp;<a href="?page={{ tweets.next_page_number }}">&raquo; &raquo;</a>
+         &emsp;<a href="?page={{ tweets.paginator.num_pages }}">Go to Last Page</a>
+    {% endif %}
+    </b>
+
+
+
+

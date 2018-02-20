@@ -1,0 +1,258 @@
+<h1>You can apply various filters from here...</h1>
+
+<form action="{% url 'twitter:api2' %}" method="post">
+
+    {% csrf_token %}
+
+    <hr size="4" style="background-color:black">
+
+
+    <table>
+        <tr>
+            <td>
+                User name :
+            </td>
+            <td>
+                <input type="text" placeholder="contains" name="user_contains" id="word"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" placeholder="starts with" name="user_start" id="user_start"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" placeholder="ends with" name="user_end" id="user_end"/>
+            </td>
+        </tr>
+    </table>
+        </p>
+    <table>
+        <tr>
+            <td>
+                Tweet text :
+            </td>
+            <td>
+                <input type="text" placeholder="contains" name="contains" id="contains"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" placeholder="starts with" name="start" id="start"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" placeholder="ends with" name="end" id="end"/><br/>
+            </td>
+        </tr>
+    </table>
+    </p>
+    <table>
+           <tr>
+            <td>
+                Entities : &emsp;
+            </td>
+            <td>
+                <input type="text" placeholder="user mentions" name="mention" id="mention"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" placeholder="urls" name="url" id="url"/>
+            </td>
+        </tr>
+
+    </table>
+        </p>
+    <table>
+        <tr>
+            <td>
+                Language :   &emsp;
+            </td>
+            <td>
+                <select name="language">
+                    <option value="">Any</option>
+                    <option value="en">English</option>
+                    <option value="ja">Japanese</option>
+                    <option value="es">Spanish</option>
+                    <option value="msa">Malay</option>
+                    <option value="pt">Portugese</option>
+                    <option value="ar">Arabic</option>
+                    <option value="fr">French</option>
+                    <option value="tr">Turkish</option>
+                    <option value="th">Thai</option>
+                    <option value="ko">Korean</option>
+                    <option value="hi">Hindi</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    </p>
+    <table>
+        <tr>
+            <td>
+                Tweets between : &emsp;
+            </td>
+            <td>
+                <input type="date" name="startdate" /> &emsp;
+            </td>
+
+            <td>
+                &     &emsp;
+            </td>
+            <td>
+                <input type="date" name="enddate"/>
+            </td>
+        </tr>
+
+
+    </table>
+
+
+    </p>
+
+
+    </p>
+    <table>
+        <tr>
+            <td>
+                {% for compare in compares %}
+                        <input type="radio" id="retweetCount{{forLoop.counter}}" name="tweetcompare"
+                                value="{{forloop.counter}}" >
+
+                        <label for="retweetCount{{forLoop.counter}}"><b>{{ compare }}</b></label>&emsp;
+                {% endfor %}
+            </td>
+            <td></td>
+            <td>
+                Retweet Count :
+            </td>
+            <td>
+                <input type="number" value="0" name="retweet" id="retweet"
+                          style="width:75px" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {% for compare in compares %}
+                    <input type="radio" id="favouriteCount{{forLoop.counter}}" name="favouritecompare"
+                            value="{{forloop.counter}}" >
+
+                    <label for="favouriteCount{{forLoop.counter}}"><b>{{ compare }}</b></label>&emsp;
+                {% endfor %}
+            </td>
+            <td></td>
+            <td>
+                Favourite Count:
+            </td>
+            <td>
+                <input type="number" value="0" name="favourite" id="favourite"
+                           style="width:75px" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {% for compare in compares %}
+                        <input type="radio" id="followerCount{{forLoop.counter}}" name="followercompare"
+                                value="{{forloop.counter}}" >
+
+                        <label for="followerCount{{forLoop.counter}}"><b>{{ compare }}</b></label>&emsp;
+                {% endfor %}
+            </td>
+            <td></td>
+            <td>
+                Followers Count:
+            </td>
+            <td>
+                <input type="number" value="0" name="follower" id="follower"
+                           style="width:75px" />
+            </td>
+        </tr>
+
+    </table>
+
+    </p>
+
+    <hr size="6" style="background-color:black">
+    </p>
+
+    <table>
+        <tr>
+            <td>
+                <span style="font-size:20"> Sort in  </span> &emsp;
+            </td>
+            <td>
+                <input type="radio" id="asc" name="order" value="1"/>
+                <label for="asc">Ascending</label><br/>
+
+                <input type="radio" id="desc" name="order" value="-1"/>
+                <label for="desc">Descending</label>
+            </td>
+            <td>
+                &emsp;<span style="font-size:20"> wrt </span> &emsp;
+            </td>
+            <td>
+                <input type="radio" id="time" name="type" value="0"/>
+                <label for="text">Time</label><br/>
+
+                <input type="radio" id="text" name="type" value="1"/>
+                <label for="text">Text</label>
+            </td>
+        </tr>
+
+    </table>
+
+    <p/>
+
+    <hr size="4" style="background-color:black">
+
+    <p/>
+
+    <table>
+        <tr>
+            <td>
+                <input type="checkbox" id="csv" name="csv"/>
+                <label for="csv">Export this data into a csv file with</label>
+            </td>
+            <td>
+                <b>name</b>
+            </td>
+            <td>
+                <input type="text" name="file_name"
+                               placeholder="default name: twitter-data"
+                                    style="width:200px"/>.csv , in
+            </td>
+        </tr>
+        <tr>
+            <td>  </td>
+            <td>
+               <b>location</b>
+            </td>
+            <td>
+                <input type="text" name="location"
+                                    placeholder="default location: C:/Users/Ideapad/Desktop"
+                                          style="width:300px" />.
+            </td>
+        </tr>
+    </table>
+
+
+
+    </label>
+    <p/>
+
+    <hr size="4" style="background-color:black">
+    </p>
+    <input type="submit" value="Apply"/>
+
+</form>
+
+

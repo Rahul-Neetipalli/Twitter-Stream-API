@@ -1,0 +1,63 @@
+<h1>Twitter Streaming App...</h1>
+<p/>
+
+
+
+<table>
+<form action = "{%  url 'twitter:api1' %}" method="post">
+    {% csrf_token %}
+
+
+        <tr>
+            <td>
+                <input type="text" placeholder="Enter Key word here...  "  value="{{key}}" name ="word" id="word"/>
+            </td>
+            <td>
+                <input type="submit" value="Stream Tweets into DB"/>
+            </td>
+        </tr>
+    </form>
+
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+
+    <form action="{% url 'twitter:stop' %}" method="post">
+        {% csrf_token %}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Stop Streaming"/>
+            </td>
+        </tr>
+
+    </form>
+ </table>
+</p>
+</p>
+</p>
+<table>
+    <form action="{% url 'twitter:index' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Refresh"/>
+    </form>
+
+    {% if start %}
+        <h4>Streaming has begun!</h4>
+    {% endif %}
+
+    {% if stop %}
+        <h4>Streaming Stopped.</h4>
+        <h4>{{count}} tweets imported.</h4>
+        To import more stream again.
+    {% endif %}
+
+    <p/>
+
+    <form action = "{%  url 'twitter:redirect' %}" method = "post">
+        {%  csrf_token %}
+        <input type="submit" value="Go to filters page"/>
+    </form>
+
+</table>
+
