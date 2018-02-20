@@ -193,7 +193,6 @@ def api2(request):
                     {"user.name":{"$regex":user_end + "$"}},
                     {"entities.user_mentions.screen_name":{"$regex":mention}},
                     {"entities.urls.url":{"$regex":url}},
-                    #{"entities.hashtags":{"in":[hashtag]}},
                     {"text":{"$regex":contains}},
                     {"text":{"$regex":"^" + start}},
                     {"text":{"$regex":end + "$"}},
